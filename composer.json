@@ -1,0 +1,31 @@
+{
+    "name": "artisan/laravel-semaphore",
+    "description": "Semaphore integration to Laravel's notification layer.",
+    "type": "library",
+    "keywords": ["laravel", "sms", "semaphore", "notification"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jaggy Gauran",
+            "email": "i.am@jag.gy"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "kitetail/zttp": "^0.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Artisan\\Semaphore\\": "src"
+        }
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Artisan\\Semaphore\\SemaphoreServiceProvider"
+            ]
+        }
+    }
+}
