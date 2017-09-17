@@ -2,6 +2,25 @@
 
 [Semaphore](semaphore.co) is a Philippine SMS Service provider.
 
+## Installation
+
+```
+composer require artisan/laravel-semaphore
+```
+
+If you're using Laravel 5.5's package discovery, then there's no need to add the service provider.
+
+Otherwise, add the Semaphore service provider in your `config/app.php`
+
+```php
+return [
+    'providers' => [
+        // ...
+
+        Artisan\Semaphore\SemaphoreServiceProvider::class,
+    ],
+]
+```
 
 ## Configuration
 
@@ -10,6 +29,12 @@ In your `.env` file, copy this default template and you can then add your Semaph
 ```
 SEMAPHORE_KEY=
 SEMAPHORE_FROM_NAME=
+```
+
+If you want to customize the config file, publish the config file via:
+
+```bash
+php artisan vendor:publish --tags=semaphore
 ```
 
 ## Usage
