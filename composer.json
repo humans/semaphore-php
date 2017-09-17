@@ -24,7 +24,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Artisan\\Semaphore\\SemaphoreServiceProvider"
+                "Artisan\\Semaphore\\ServiceProvider"
             ]
         }
     }
