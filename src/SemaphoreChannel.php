@@ -18,11 +18,11 @@ class SemaphoreChannel
     {
         $message = $notification->toSemaphore($notifiable);
 
-        $parameters = array(
+        Zttp::post('http://api.semaphore.co/api/v4/messages', [
             'number'     => $notifiable->routeNotificationForSemaphore(),
             'message'    => $message,
             'apikey'     => config('services.semaphore.key'),
             'sendername' => config('services.semaphore.from_name')
-        );
+        ]);
     }
 }
