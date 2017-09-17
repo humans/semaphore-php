@@ -3,6 +3,7 @@
 namespace Artisan\Semaphore;
 
 use Zttp;
+use Illuminate\Notifications\Notification;
 
 class SemaphoreChannel
 {
