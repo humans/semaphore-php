@@ -8,6 +8,11 @@ use Illuminate\Notifications\Notification;
 class SemaphoreChannel
 {
     /**
+     * Semaphore's API endpoint to send messages.
+     */
+    const MESSAGE_API = 'http://api.semaphore.co/api/v4/messages';
+
+    /**
      * Send the sms notification.
      *
      * @param  mixed  $notifiable
@@ -18,7 +23,7 @@ class SemaphoreChannel
     {
         $message = $notification->toSemaphore($notifiable);
 
-        Zttp::post('http://api.semaphore.co/api/v4/messages', [
+        Zttp::post(static::MESSAGE_API, [
             'number'     => $notifiable->routeNotificationForSemaphore(),
             'message'    => $message,
             'apikey'     => config('services.semaphore.key'),
