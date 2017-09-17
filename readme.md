@@ -17,7 +17,7 @@ return [
     'providers' => [
         // ...
 
-        Artisan\Semaphore\SemaphoreServiceProvider::class,
+        Artisan\Semaphore\ServiceProvider::class,
     ],
 ]
 ```
