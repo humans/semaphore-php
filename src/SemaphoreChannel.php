@@ -26,8 +26,8 @@ class SemaphoreChannel
         Zttp::post(static::MESSAGE_API, [
             'number'     => $notifiable->routeNotificationForSemaphore(),
             'message'    => $message,
-            'apikey'     => config('services.semaphore.key'),
-            'sendername' => config('services.semaphore.from_name')
+            'apikey'     => config('semaphore.key'),
+            'sendername' => config('semaphore.from_name')
         ]);
     }
 }
