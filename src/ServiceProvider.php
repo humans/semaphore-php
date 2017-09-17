@@ -32,7 +32,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $configPath = __DIR__ . '/../config/semaphore.php';
 
-        $this->publishes([config_path('semaphore.php') => $this->getConfigPath()], 'config');
+        $this->publishes([$configPath => config_path('semaphore.php')], 'config');
     }
 
     /**
