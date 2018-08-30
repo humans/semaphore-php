@@ -6,8 +6,10 @@ use LogicException;
 
 class InvalidSenderName extends LogicException
 {
-    public function __construct($message)
+    public function __construct($sender)
     {
-        parent::__construct($message);
+        parent::__construct(
+            "The sender name [{$sender}] is not valid, or has not yet been approved."
+        );
     }
 }

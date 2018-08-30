@@ -6,8 +6,10 @@ use LogicException;
 
 class InvalidApiKey extends LogicException
 {
-    public function __construct($message)
+    public function __construct($apiKey)
     {
-        parent::__construct($message);
+        parent::__construct(
+            "The API key [{$apiKey}] provided was invalid. Please check the SEMAPHORE_KEY in your .env file."
+        );
     }
 }
