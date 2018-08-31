@@ -39,6 +39,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      * Publish the config file
      *
      * @param  string $configPath
+     * @return void
      */
     protected function publishConfig($configPath)
     {
