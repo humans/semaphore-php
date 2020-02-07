@@ -1,6 +1,6 @@
 <?php
 
-namespace Artisan\Semaphore\Exceptions;
+namespace Humans\Semaphore\Exceptions;
 
 use RuntimeException;
 

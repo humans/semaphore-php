@@ -1,6 +1,6 @@
 <?php
 
-namespace Artisan\Semaphore;
+namespace Humans\Semaphore;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {

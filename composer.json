@@ -1,5 +1,5 @@
 {
-    "name": "artisan/laravel-semaphore",
+    "name": "humans/laravel-semaphore",
     "description": "Semaphore integration to Laravel's notification layer.",
     "type": "library",
     "keywords": ["laravel", "sms", "semaphore", "notification"],
@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Artisan\\Semaphore\\": "src"
+            "Humans\\Semaphore\\": "src"
         }
     },
     "prefer-stable": true,
@@ -24,7 +24,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Artisan\\Semaphore\\ServiceProvider"
+                "Humans\\Semaphore\\ServiceProvider"
             ]
         }
     }
