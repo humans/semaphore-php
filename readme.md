@@ -5,10 +5,12 @@
 ## Installation
 
 ```
-composer require artisan/laravel-semaphore
+composer require humans/laravel-semaphore
 ```
 
-If you're using Laravel 5.5's package discovery, then there's no need to add the service provider.
+### Service Provider
+
+For Laravel 5.5 or greater, the package already adds the service provider via **Package Discovery**.
 
 Otherwise, add the Semaphore service provider in your `config/app.php`
 
@@ -16,14 +18,12 @@ Otherwise, add the Semaphore service provider in your `config/app.php`
 return [
     'providers' => [
         // ...
-
-        Artisan\Semaphore\ServiceProvider::class,
+        Humans\Semaphore\ServiceProvider::class,
     ],
 ]
 ```
 
 ## Configuration
-
 In your `.env` file, copy this default template and you can then add your Semaphore API key and sender name.
 
 ```
@@ -39,13 +39,13 @@ php artisan vendor:publish --tags=semaphore
 
 ## Usage
 
-After creating a notification, we can start using the `Aritsan\Semaphore\SemaphoreChannel` to send out your SMS.
+After creating a notification, we can start using the `Humans\Semaphore\SemaphoreChannel` to send out your SMS.
 
-You should define a `toSemaphore` method on the notification class. This method will receive a `$notifiable` entity and should return an `Artisan\Semaphore\SemahporeMessage` instance:
+You should define a `toSemaphore` method on the notification class. This method will receive a `$notifiable` entity and should return an `Humans\Semaphore\SemahporeMessage` instance:
 
 ```php
-use Artisan\Semaphore\SemaphoreChannel;
-use Artisan\Semaphore\SemaphoreMessage;
+use Humans\Semaphore\SemaphoreChannel;
+use Humans\Semaphore\SemaphoreMessage;
 
 class ReminderMessage extends notification
 {
@@ -62,7 +62,6 @@ class ReminderMessage extends notification
 }
 ```
 
-
 If you would like to send notifications form a sname that is different from the name you specified in your `config/semaphore.php` file, you may use the `from` method on a `SemaphoreMessage` instance:
 
 ```php
@@ -70,7 +69,7 @@ If you would like to send notifications form a sname that is different from the 
     {
         return (new SemaphoreMessage)
                     ->content("Hey {$notifiable->name}, don't forget to brush your teeth!")
-                    ->from('Artisan');
+                    ->from('Humans');
     }
 ```
 
@@ -87,7 +86,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-    
+
     /**
      * Route notifications for the Semaphore channel.
      *

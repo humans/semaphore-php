@@ -1,8 +1,9 @@
 <?php
 
-namespace Artisan\Semaphore;
+namespace Humans\Semaphore;
 
 use Zttp\Zttp;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Notifications\Notification;
 
 class SemaphoreChannel
@@ -27,7 +28,7 @@ class SemaphoreChannel
             'number'     => $number = $notifiable->routeNotificationForSemaphore(),
             'message'    => $message->getContent(),
             'sendername' => $sender = $message->getFrom(),
-            'apikey'     => $apiKey = config('semaphore.key'),
+            'apikey'     => $apiKey = Config::get('semaphore.key'),
         ])->json();
 
         if (array_key_exists('apikey', $response)) {
