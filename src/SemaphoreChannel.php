@@ -29,23 +29,14 @@ class SemaphoreChannel
         ]);
 
         if (array_key_exists('apikey', $response)) {
-            // "apikey" => array:1 [
-            //     0 => "The selected apikey is invalid."
-            // ]
             throw new Exceptions\InvalidApiKey($apiKey);
         }
 
         if (array_key_exists(0, $response) && array_key_exists('senderName', $response[0])) {
-            // 0 => array:1 [
-            //     "senderName" => "The senderName supplied is not valid"
-            // ]
             throw new Exceptions\InvalidSenderName($sender);
         }
 
         if (array_key_exists('number', $response)) {
-            // "number" => array:1 [
-            //     0 => "The number format is invalid."
-            // ]
             throw new Exceptions\InvalidNumber($number);
         }
 

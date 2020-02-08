@@ -4,9 +4,13 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use Facades\Humans\Semaphore\SemaphoreApi;
+use Humans\Semaphore\Exceptions\InvalidApiKey;
+use Humans\Semaphore\Exceptions\InvalidNumber;
+use Humans\Semaphore\Exceptions\InvalidSenderName;
 use Humans\Semaphore\SemaphoreChannel;
 use Humans\Semaphore\SemaphoreMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Config;
 
 class SemaphoreChannelTest extends TestCase
 {
@@ -37,6 +41,64 @@ class SemaphoreChannelTest extends TestCase
             "some.email@email.com",
             $response[0]['user']
         );
+    }
+
+    function test_invalid_api_key()
+    {
+        SemaphoreApi::shouldReceive('send')->andReturn([
+            'apikey' => [
+                "The selected apikey is invalid."
+            ],
+        ]);
+
+        Config::set('semaphore.key', 'abc-123');
+
+        try {
+            (new SemaphoreChannel)->send(new Person, new FakeNotification);
+        } catch (InvalidApiKey $e) {
+            $this->assertEquals(
+                'The API key [abc-123] provided was invalid. Please check the SEMAPHORE_KEY in your .env file.',
+                $e->getMessage()
+            );
+        }
+    }
+
+    function test_invalid_sender_name()
+    {
+        SemaphoreApi::shouldReceive('send')->andReturn([
+            0 => [
+                "senderName" => "The senderName supplied is not valid",
+            ],
+        ]);
+
+        Config::set('semaphore.from_name', 'invalid sender name');
+
+        try {
+            (new SemaphoreChannel)->send(new Person, new FakeNotification);
+        } catch (InvalidSenderName $e) {
+            $this->assertEquals(
+                'The sender name [invalid sender name] is not valid, or has not yet been approved.',
+                $e->getMessage()
+            );
+        }
+    }
+
+    function test_invalid_phone_number()
+    {
+        SemaphoreApi::shouldReceive('send')->andReturn([
+            'number' => [
+                "The number format is invalid."
+            ],
+        ]);
+
+        try {
+            (new SemaphoreChannel)->send(new Person, new FakeNotification);
+        } catch (InvalidNumber $e) {
+            $this->assertEquals(
+                'The number [09111111111] is invalid. The allowed formats are +639XXXXXXXXX, 639XXXXXXXXX, or 09XXXXXXXXX.',
+                $e->getMessage()
+            );
+        }
     }
 }
 
