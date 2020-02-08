@@ -2,6 +2,7 @@
 
 namespace Humans\Semaphore;
 
+use Humans\Semaphore\Exceptions\NumberNotFoundException;
 use Zttp\Zttp;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Notifications\AnonymousNotifiable;
@@ -70,6 +71,6 @@ class SemaphoreChannel
             return $notifiable->routeNotificationForSemaphore();
         }
 
-        dd("Huh");
+        throw new NumberNotFoundException($notifiable);
     }
 }
