@@ -2,6 +2,8 @@
 
 namespace Humans\Semaphore;
 
+use Illuminate\Support\Facades\App;
+
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
@@ -32,7 +34,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $configPath = __DIR__ . '/../config/semaphore.php';
 
-        $this->publishes([$configPath => config_path('semaphore.php')], 'config');
+        $this->publishes([$configPath => App::configPath('semaphore.php')], 'config');
     }
 
     /**
@@ -43,7 +45,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     protected function publishConfig($configPath)
     {
-        $this->publishes([$configPath => config_path('semaphore.php')], 'config');
+        $this->publishes([$configPath => App::configPath('semaphore.php')], 'config');
     }
 
     /**
