@@ -4,6 +4,7 @@ namespace Humans\Semaphore;
 
 use Zttp\Zttp;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Notification;
 
 class SemaphoreChannel
@@ -25,7 +26,7 @@ class SemaphoreChannel
         $message = $notification->toSemaphore($notifiable);
 
         $response = Zttp::post(static::MESSAGE_API, [
-            'number'     => $number = $notifiable->routeNotificationForSemaphore(),
+            'number'     => $number = $this->number($notifiable),
             'message'    => $message->getContent(),
             'sendername' => $sender = $message->getFrom(),
             'apikey'     => $apiKey = Config::get('semaphore.key'),
@@ -51,5 +52,24 @@ class SemaphoreChannel
             // ]
             throw new Exceptions\InvalidNumber($number);
         }
+    }
+
+    /**
+     * Get the phone number from the notifiable.
+     *
+     * @param  mixed  $notifiable
+     * @return string
+     */
+    private function number($notifiable)
+    {
+        if ($notifiable instanceof AnonymousNotifiable) {
+            return $notifiable->routes[self::class];
+        }
+
+        if (method_exists($notifiable, 'routeNotificationForSemaphore')) {
+            return $notifiable->routeNotificationForSemaphore();
+        }
+
+        dd("Huh");
     }
 }

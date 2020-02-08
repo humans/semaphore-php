@@ -2,6 +2,8 @@
 
 namespace Humans\Semaphore;
 
+use Illuminate\Support\Facades\Config;
+
 class SemaphoreMessage
 {
     /**
@@ -52,7 +54,7 @@ class SemaphoreMessage
     public function getFrom()
     {
         if (! $this->from) {
-            return config('semaphore.from_name');
+            return Config::get('semaphore.from_name');
         }
 
         return $this->from;
