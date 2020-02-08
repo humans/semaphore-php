@@ -3,14 +3,15 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Notifications\Notification;
 use Facades\Humans\Semaphore\SemaphoreApi;
 use Humans\Semaphore\Exceptions\InvalidApiKey;
 use Humans\Semaphore\Exceptions\InvalidNumber;
 use Humans\Semaphore\Exceptions\InvalidSenderName;
+use Humans\Semaphore\Exceptions\NumberNotFound;
 use Humans\Semaphore\SemaphoreChannel;
 use Humans\Semaphore\SemaphoreMessage;
-use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Config;
 
 class SemaphoreChannelTest extends TestCase
 {
@@ -100,6 +101,22 @@ class SemaphoreChannelTest extends TestCase
             );
         }
     }
+
+    function test_route_method_not_implemented()
+    {
+        try {
+            (new SemaphoreChannel)->send(new ClassWithoutNumber, new FakeNotification);
+        } catch (NumberNotFound $e) {
+            $this->assertEquals(
+                'The phone number has not been set. Add a [routeNotificationForSemaphore] method to your Tests\Unit\ClassWithoutNumber class.',
+                $e->getMessage()
+            );
+        }
+    }
+}
+
+class ClassWithoutNumber
+{
 }
 
 class Person

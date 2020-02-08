@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Notification;
 use Facades\Humans\Semaphore\SemaphoreApi;
-use Humans\Semaphore\Exceptions\NumberNotFoundException;
+use Humans\Semaphore\Exceptions\NumberNotFound;
 
 class SemaphoreChannel
 {
@@ -59,6 +59,6 @@ class SemaphoreChannel
             return $notifiable->routeNotificationForSemaphore();
         }
 
-        throw new NumberNotFoundException($notifiable);
+        throw new NumberNotFound($notifiable);
     }
 }
