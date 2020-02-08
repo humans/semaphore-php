@@ -49,25 +49,6 @@ class SemaphoreChannel
             throw new Exceptions\InvalidNumber($number);
         }
 
-
-        // [
-        //     [
-        //         "message_id" => 77879141,
-        //         "user_id" => XXXX,
-        //         "user" => "some.email@email.com",
-        //         "account_id" => XXX,
-        //         "account" => "Some Account Name",
-        //         "recipient" => "0917xxxxxxx"
-        //         "message" => "Hello Message"
-        //         "sender_name" => "Sender Name"
-        //         "network" => "Globe|Smart|Sun"
-        //         "status" => "Penng"
-        //         "type" => "Single"
-        //         "source" => "Api"
-        //         "created_at" => "2020-02-08 21:28:27"
-        //         "updated_at" => "2020-02-08 21:28:27"
-        //     ]
-        // ]
         return $response;
     }
 
