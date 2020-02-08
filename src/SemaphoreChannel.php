@@ -2,19 +2,14 @@
 
 namespace Humans\Semaphore;
 
-use Humans\Semaphore\Exceptions\NumberNotFoundException;
-use Zttp\Zttp;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Notification;
+use Facades\Humans\Semaphore\SemaphoreApi;
+use Humans\Semaphore\Exceptions\NumberNotFoundException;
 
 class SemaphoreChannel
 {
-    /**
-     * Semaphore's API endpoint to send messages.
-     */
-    const MESSAGE_API = 'http://api.semaphore.co/api/v4/messages';
-
     /**
      * Send the SMS notification.
      *
@@ -26,12 +21,12 @@ class SemaphoreChannel
     {
         $message = $notification->toSemaphore($notifiable);
 
-        $response = Zttp::post(static::MESSAGE_API, [
+        $response = SemaphoreApi::send([
             'number'     => $number = $this->number($notifiable),
             'message'    => $message->getContent(),
             'sendername' => $sender = $message->getFrom(),
             'apikey'     => $apiKey = Config::get('semaphore.key'),
-        ])->json();
+        ]);
 
         if (array_key_exists('apikey', $response)) {
             // "apikey" => array:1 [

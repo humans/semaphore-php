@@ -29,5 +29,8 @@
                 "Humans\\Semaphore\\ServiceProvider"
             ]
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
     }
 }
