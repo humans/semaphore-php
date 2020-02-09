@@ -1,4 +1,4 @@
-# Introdution
+# Introduction
 [![Latest Stable Version](https://poser.pugx.org/humans/semaphore-sms/v/stable)](https://packagist.org/packages/humans/semaphore-sms)
 [![License](https://poser.pugx.org/humans/semaphore-sms/license)](https://packagist.org/packages/humans/semaphore-sms)
 
