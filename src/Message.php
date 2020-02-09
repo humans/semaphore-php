@@ -4,11 +4,24 @@ namespace Humans\Semaphore;
 
 class Message
 {
+    /**
+     * Create a new message client instance.
+     *
+     * @param  \Humans\Semaphore\Client  @client
+     * @return Message
+     */
     public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
+    /**
+     * Send a message to the number.
+     *
+     * @param  string  $number
+     * @param  string  $message
+     * @return array
+     */
     public function send($number, $message)
     {
         $response = $this->client->send('POST', '/api/v4/messages', [
