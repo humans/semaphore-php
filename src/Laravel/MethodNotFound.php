@@ -1,10 +1,10 @@
 <?php
 
-namespace Humans\Semaphore\Exceptions;
+namespace Humans\Semaphore\Laravel;
 
 use RuntimeException;
 
-class NumberNotFound extends RuntimeException
+class MethodNotFound extends RuntimeException
 {
     public function __construct($notifiable)
     {

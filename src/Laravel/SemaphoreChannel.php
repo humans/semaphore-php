@@ -2,11 +2,9 @@
 
 namespace Humans\Semaphore\Laravel;
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Notification;
 use Humans\Semaphore\Laravel\Facade as Semaphore;
-use Humans\Semaphore\Exceptions\NumberNotFound;
 
 class SemaphoreChannel
 {
@@ -56,6 +54,6 @@ class SemaphoreChannel
             return $notifiable->routeNotificationForSemaphore();
         }
 
-        throw new NumberNotFound($notifiable);
+        throw new MethodNotFound($notifiable);
     }
 }
