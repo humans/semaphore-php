@@ -1,11 +1,11 @@
 <?php
 
-namespace Humans\Semaphore;
+namespace Humans\Semaphore\Laravel;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Notification;
-use Facades\Humans\Semaphore\SemaphoreApi;
+use Humans\Semaphore\Laravel\Facade as Semaphore;
 use Humans\Semaphore\Exceptions\NumberNotFound;
 
 class SemaphoreChannel
@@ -21,12 +21,9 @@ class SemaphoreChannel
     {
         $message = $notification->toSemaphore($notifiable);
 
-        $response = SemaphoreApi::send([
-            'number'     => $number = $this->number($notifiable),
-            'message'    => $message->getContent(),
-            'sendername' => $sender = $message->getFrom(),
-            'apikey'     => $apiKey = Config::get('semaphore.key'),
-        ]);
+        $response = Semaphore::message()->send(
+            $this->number($notifiable), $message->getMessage()
+        );
 
         if (array_key_exists('apikey', $response)) {
             throw new Exceptions\InvalidApiKey($apiKey);

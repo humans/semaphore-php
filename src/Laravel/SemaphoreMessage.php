@@ -1,24 +1,24 @@
 <?php
 
-namespace Humans\Semaphore;
+namespace Humans\Semaphore\Laravel;
 
 use Illuminate\Support\Facades\Config;
 
 class SemaphoreMessage
 {
     /**
-     * The content the recepient will get.
+     * The message the recepient will get.
      *
      * @var string
      */
-    protected $content;
+    protected $message;
 
     /**
      * The name that the recepient will see in their message.
      *
      * @var string
      */
-    protected $from;
+    protected $sender;
 
     /**
      * Assign a name for this specific message that will be sent.
@@ -34,14 +34,14 @@ class SemaphoreMessage
     }
 
     /**
-     * Set the content to send.
+     * Set the message to send.
      *
-     * @param  string  $content
+     * @param  string  $message
      * @return SemaphoreMessage
      */
-    public function content($content)
+    public function message($message)
     {
-        $this->content = $content;
+        $this->message = $message;
 
         return $this;
     }
@@ -53,20 +53,20 @@ class SemaphoreMessage
      */
     public function getFrom()
     {
-        if (! $this->from) {
-            return Config::get('semaphore.from_name');
+        if (! $this->sender) {
+            return Config::get('semaphore.sender_name');
         }
 
-        return $this->from;
+        return $this->sender;
     }
 
     /**
-     * Get the content to send to the user.
+     * Get the message to send to the user.
      *
      * @return string
      */
-    public function getContent()
+    public function getMessage()
     {
-        return $this->content;
+        return $this->message;
     }
 }

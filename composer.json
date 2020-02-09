@@ -14,6 +14,9 @@
         "php": ">=7.1",
         "symfony/http-client": "^5.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
     "autoload": {
         "psr-4": {
             "Humans\\Semaphore\\": "src"
@@ -29,11 +32,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Humans\\Semaphore\\ServiceProvider"
+                "Humans\\Semaphore\\Laravel\\ServiceProvider"
             ]
         }
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^9.0"
     }
 }

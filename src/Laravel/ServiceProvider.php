@@ -1,8 +1,10 @@
 <?php
 
-namespace Humans\Semaphore;
+namespace Humans\Semaphore\Laravel;
 
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
+use Humans\Semaphore\Client;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
@@ -20,9 +22,16 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        $configPath = __DIR__ . '/../config/semaphore.php';
+        $configPath = __DIR__ . '/config/semaphore.php';
 
         $this->mergeConfigFrom($configPath, 'semaphore');
+
+        $this->app->bind(Client::class, function () {
+            return new Client(
+                Config::get('semaphore.api_key'),
+                Config::get('semaphore.sender_name')
+            );
+        });
     }
 
     /**
@@ -32,7 +41,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function boot()
     {
-        $configPath = __DIR__ . '/../config/semaphore.php';
+        $configPath = __DIR__ . '/config/semaphore.php';
 
         $this->publishes([$configPath => App::configPath('semaphore.php')], 'config');
     }
