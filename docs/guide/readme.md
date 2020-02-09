@@ -1,10 +1,8 @@
-# Semaphore PHP
+# Introdution
 [![Latest Stable Version](https://poser.pugx.org/humans/semaphore-sms/v/stable)](https://packagist.org/packages/humans/semaphore-sms)
 [![License](https://poser.pugx.org/humans/semaphore-sms/license)](https://packagist.org/packages/humans/semaphore-sms)
 
-This is a PHP client for the [Semaphore](semaphore.co) SMS service provider with out of the box Laravel integration.
-
-[Read the complete documentation here.](https://humans.github.io/semaphore-php)
+This is a PHP client for the [Semaphore](semaphore.co) SMS service provider.
 
 ::: tip
 _This library requires a minimum PHP version of 7.1_
