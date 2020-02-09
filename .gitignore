@@ -1,3 +1,4 @@
 /vendor/
-composer.lock
-.phpunit.result.cache
+/docs/.vuepress/dist
+/composer.lock
+/.phpunit.result.cache

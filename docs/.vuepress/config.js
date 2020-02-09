@@ -1,4 +1,5 @@
 module.exports = {
+  base: "/semaphore-php/",
   themeConfig: {
     sidebar: [
       {
