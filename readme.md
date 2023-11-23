@@ -18,9 +18,9 @@ To start using the library, we'll have to provide the Sempahore API key.
 
 ```php
 $client = new Client(
-  
-  '<SEMAPHORE API KEY>', 
-  
+
+  '<SEMAPHORE API KEY>',
+
   // If the sender is left blank, SEMAPHORE will be the default sender name.
   '<SENDER>',
 
@@ -64,9 +64,9 @@ holds the mobile number.
 ```php
 class User {
     use Notifiable;
-    
+
     // ...
-    
+
     public function routeNotificationForSemaphore()
     {
         return $this->mobile_number;
@@ -89,11 +89,7 @@ class Welcome extends Notification implements UsesSemaphore
     public function toSemaphore($notifiable): SemaphoreMessage
     {
         return (new SemaphoreMessage)
-            ->message('<Your message here>')
-            // This is optional. If you have multiple sender names, 
-            // you can override your config here. Otherwise, it will
-            // use the sender name in your config.
-            ->from('<Sender>');
+            ->message('<Your message here>');
     }
 }
 

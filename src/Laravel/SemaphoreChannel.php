@@ -28,7 +28,6 @@ class SemaphoreChannel
         $response = $this->client->message()->send(
             $this->number($notifiable),
             $message->getMessage(),
-            $message->getFrom(),
         );
 
         return $response;

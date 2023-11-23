@@ -9,8 +9,7 @@ class Message
     /**
      * Create a new message client instance.
      *
-     * @param  \Humans\Semaphore\Client  @client
-     * @return Message
+     * @param  Client  $client
      */
     public function __construct(Client $client)
     {
@@ -26,7 +25,7 @@ class Message
      */
     public function send($number, $message)
     {
-        $response = $this->client->send('POST', '/api/v4/messages', [
+        $response = $this->client->send('POST', '/messages', [
             'headers' => [
                 'Content-Type' => 'application/json',
             ],

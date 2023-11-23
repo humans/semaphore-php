@@ -12,7 +12,7 @@ class Client
      *
      * @var string
      */
-    const BASE_API = 'http://api.semaphore.co/';
+    const BASE_API = 'http://api.semaphore.co/api/v4';
 
     /**
      * The API key.
@@ -36,7 +36,7 @@ class Client
     protected $sender;
 
     /**
-     * Create a new sempahore client instance.
+     * Create a new Sempahore client instance.
      *
      * @param  string  $apiKey
      * @param  string  $sender
@@ -94,7 +94,7 @@ class Client
     }
 
     /**
-     * Get the messag eclient.
+     * Get the message client.
      *
      * @return \Humans\Semaphore\Message
      */
