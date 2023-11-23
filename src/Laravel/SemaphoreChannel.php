@@ -2,10 +2,10 @@
 
 namespace Humans\Semaphore\Laravel;
 
-use Humans\Semaphore\Client;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Notification;
 use Humans\Semaphore\Laravel\Facade as Semaphore;
+use Humans\Semaphore\Client;
 
 class SemaphoreChannel
 {
