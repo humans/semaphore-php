@@ -5,7 +5,7 @@ namespace Humans\Semaphore\Laravel\Facades;
 use Humans\Semaphore\Client;
 
 /**
- * 
+ * @method \Humans\Semaphore\Message message()
  */
 class Semaphore extends \Illuminate\Support\Facades\Facade
 {
