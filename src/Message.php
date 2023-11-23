@@ -25,7 +25,7 @@ class Message
      */
     public function send($number, $message)
     {
-        $response = $this->client->send('POST', '/messages', [
+        $response = $this->client->send('POST', '/api/v4/messages', [
             'headers' => [
                 'Content-Type' => 'application/json',
             ],

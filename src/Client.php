@@ -12,10 +12,9 @@ class Client
      *
      * @var string
      */
-    const BASE_API = 'http://api.semaphore.co/api/v4';
+    const BASE_API = 'http://api.semaphore.co';
 
-    /**
-     * The API key.
+    /** * The API key.
      *
      * @var string
      */
