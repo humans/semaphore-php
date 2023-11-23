@@ -38,6 +38,8 @@ SEMAPHORE_API_KEY=xxxxxxxx
 SEMAPHORE_SENDER_NAME=xxxxxxxx
 ```
 
+**If you have package discovery disabled,** make sure to register the `Humans\Semaphore\Laravel\ServiceProvider` in your `app.php`.
+
 ### Send a message
 You can use the `Semaphore` facade provided by the package.
 
