@@ -35,7 +35,7 @@
                 "Humans\\Semaphore\\Laravel\\ServiceProvider"
             ],
             "aliases": {
-                "Semaphore": "Humans\\Semaphore\\Laravel\\Facade"
+                "Semaphore": "Humans\\Semaphore\\Laravel\\Facades\\Semaphore"
             }
         }
     }

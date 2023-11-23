@@ -4,6 +4,8 @@ namespace Humans\Semaphore;
 
 class Message
 {
+    private Client $client;
+
     /**
      * Create a new message client instance.
      *
@@ -44,7 +46,7 @@ class Message
             throw new Exceptions\InvalidNumber($number);
         }
 
-        if (array_key_exists('senderName', $response[0])) {
+        if (array_key_exists(0, $response) && array_key_exists('senderName', $response[0])) {
             throw new Exceptions\InvalidSenderName($sender);
         }
 
