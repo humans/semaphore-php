@@ -17,7 +17,14 @@ To start using the library, we'll have to provide the Sempahore API key.
 ## Send a message
 
 ```php
-$client = new Client('<SEMAPHORE API KEY>', '<SENDER>');
+$client = new Client(
+  
+  '<SEMAPHORE API KEY>', 
+  
+  // If the sender is left blank, SEMAPHORE will be the default sender name.
+  '<SENDER>',
+
+);
 
 $client->message()->send('0917xxxxxxx', '<Your message here>');
 ```
