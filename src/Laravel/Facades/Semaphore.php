@@ -1,10 +1,13 @@
 <?php
 
-namespace Humans\Semaphore\Laravel;
+namespace Humans\Semaphore\Laravel\Facades;
 
 use Humans\Semaphore\Client;
 
-class Facade extends \Illuminate\Support\Facades\Facade
+/**
+ * 
+ */
+class Semaphore extends \Illuminate\Support\Facades\Facade
 {
     public static function getFacadeAccessor()
     {
