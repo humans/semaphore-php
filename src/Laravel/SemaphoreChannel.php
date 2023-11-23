@@ -2,12 +2,17 @@
 
 namespace Humans\Semaphore\Laravel;
 
+use Humans\Semaphore\Client;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Notification;
 use Humans\Semaphore\Laravel\Facade as Semaphore;
 
 class SemaphoreChannel
 {
+    public function __construct(private Client $client)
+    {
+    }
+
     /**
      * Send the SMS notification.
      *
@@ -17,23 +22,14 @@ class SemaphoreChannel
      */
     public function send($notifiable, Notification $notification)
     {
+        /** @var SemaphoreMessage $message */
         $message = $notification->toSemaphore($notifiable);
 
-        $response = Semaphore::message()->send(
-            $this->number($notifiable), $message->getMessage()
+        $response = $this->client->message()->send(
+            $this->number($notifiable),
+            $message->getMessage(),
+            $message->getFrom(),
         );
-
-        if (array_key_exists('apikey', $response)) {
-            throw new Exceptions\InvalidApiKey($apiKey);
-        }
-
-        if (array_key_exists(0, $response) && array_key_exists('senderName', $response[0])) {
-            throw new Exceptions\InvalidSenderName($sender);
-        }
-
-        if (array_key_exists('number', $response)) {
-            throw new Exceptions\InvalidNumber($number);
-        }
 
         return $response;
     }
