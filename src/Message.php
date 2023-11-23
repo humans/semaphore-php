@@ -4,6 +4,8 @@ namespace Humans\Semaphore;
 
 class Message
 {
+    private Client $client;
+
     /**
      * Create a new message client instance.
      *
